@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educatorias</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FDF8F3;
+    --warm-white: #f7ede2;
+    --forest: #84a59d;
+    --forest-mid: #3E6B22;
+    --forest-light: #84a59d;
+    --leaf: #7EC850;
+    --amber: #E8A020;
+    --amber-light: #F5C460;
+    --blush: #F4D4C0;
+    --rust: #C85A2A;
+    --charcoal: #1E1E1E;
+    --gray: #6B6B6B;
+    --light-gray: #D8D8D0;
+    --section-gap: 90px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(253, 248, 243, 0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(45,80,22,0.1);
+    padding: 18px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 700;
+    color: var(--forest);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--amber); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; letter-spacing: 0.03em;
+    color: var(--gray); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--forest); }
+  .nav-cta {
+    background: var(--forest); color: white;
+    padding: 10px 24px; border-radius: 50px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--forest-mid); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 80% 50%, rgba(126,200,80,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(232,160,32,0.10) 0%, transparent 70%);
+  }
+  .hero-dots {
+    position: absolute; inset: 0; z-index: 0;
+    background-image: radial-gradient(circle, rgba(45,80,22,0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 600px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(126,200,80,0.18); border: 1px solid rgba(126,200,80,0.4);
+    color: var(--forest); padding: 6px 16px; border-radius: 50px;
+    font-size: 13px; font-weight: 500; margin-bottom: 28px;
+  }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; background: var(--leaf); border-radius: 50%; display: block; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 700; line-height: 1.08;
+    color: var(--forest);
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--amber);
+  }
+  .hero p {
+    font-size: 18px; font-weight: 300; line-height: 1.7;
+    color: var(--gray); margin-bottom: 40px; max-width: 480px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--forest); color: white;
+    padding: 14px 32px; border-radius: 50px;
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--forest-mid); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid var(--forest); color: var(--forest);
+    padding: 14px 32px; border-radius: 50px;
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--forest); color: white; }
+
+  .hero-image {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    width: 50%; max-width: 680px; z-index: 1;
+    border-radius: 24px 0 0 24px; overflow: hidden;
+    box-shadow: -20px 20px 60px rgba(45,80,22,0.15);
+  }
+  .hero-image img { width: 100%; height: 560px; object-fit: cover; display: block; }
+  .hero-image-placeholder {
+    width: 100%; height: 560px;
+    background: linear-gradient(135deg, #d4e8b8 0%, #a8d080 50%, #7ec850 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; color: var(--forest);
+  }
+  .hero-image-placeholder svg { width: 64px; height: 64px; opacity: 0.6; }
+  .hero-image-placeholder p { font-size: 15px; font-weight: 500; opacity: 0.7; }
+
+  /* ─── STATS STRIP ─── */
+  .stats {
+    background: var(--forest);
+    padding: 40px 60px;
+    display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px; font-weight: 700; color: var(--amber-light);
+    display: block;
+  }
+  .stat-label { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: var(--section-gap) 60px; }
+
+  .section-tag {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--forest-light);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px); font-weight: 700;
+    color: var(--forest); line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px; font-weight: 300; color: var(--gray);
+    line-height: 1.7; max-width: 520px; margin-bottom: 50px;
+  }
+
+  /* ─── PROGRAMS ─── */
+  #programs { background: var(--warm-white); }
+  .programs-header { max-width: 600px; margin-bottom: 60px; }
+
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+  }
+  .program-card {
+    background: white; border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(45,80,22,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .program-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(45,80,22,0.12); }
+  .program-img {
+    width: 100%; height: 200px; object-fit: cover; display: block;
+  }
+  .program-img-placeholder {
+    width: 100%; height: 200px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; font-size: 13px; font-weight: 500;
+  }
+  .program-img-placeholder svg { width: 40px; height: 40px; opacity: 0.7; }
+  .program-body { padding: 24px; }
+  .program-age {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 12px;
+    border-radius: 50px; display: inline-block; margin-bottom: 12px;
+  }
+  .program-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--charcoal); margin-bottom: 10px;
+  }
+  .program-body p { font-size: 14px; color: var(--gray); line-height: 1.65; margin-bottom: 20px; }
+  .program-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .program-features li {
+    font-size: 13px; color: var(--forest-mid); font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .program-features li::before { content: '✓'; font-weight: 700; color: var(--leaf); }
+
+  /* ─── GALLERY ─── */
+  #gallery { background: var(--cream); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 240px);
+    gap: 16px;
+    margin-top: 50px;
+  }
+  .gallery-item {
+    border-radius: 16px; overflow: hidden; cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+  }
+  .gallery-item:hover { transform: scale(1.02); }
+  .gallery-item:first-child {
+    grid-column: 1 / 2; grid-row: 1 / 3;
+  }
+  .gallery-img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; font-size: 13px; font-weight: 500; color: white;
+  }
+  .gallery-placeholder svg { width: 32px; height: 32px; opacity: 0.8; }
+
+  /* ─── WHY US ─── */
+  #why { background: var(--warm-white); }
+  .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .why-image-block { position: relative; }
+  .why-img {
+    width: 100%; height: 480px; object-fit: cover;
+    border-radius: 24px; display: block;
+  }
+  .why-img-placeholder {
+    width: 100%; height: 480px;
+    background: linear-gradient(160deg, #c8e4a4 0%, #7ec850 100%);
+    border-radius: 24px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; color: var(--forest);
+  }
+  .why-img-placeholder svg { width: 56px; height: 56px; opacity: 0.6; }
+  .why-badge-float {
+    position: absolute; bottom: 30px; right: -24px;
+    background: var(--forest); color: white;
+    padding: 20px 28px; border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(45,80,22,0.2);
+  }
+  .why-badge-float .big { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--amber-light); }
+  .why-badge-float .small { font-size: 13px; color: rgba(255,255,255,0.75); }
+
+  .why-features { display: flex; flex-direction: column; gap: 28px; margin-top: 32px; }
+  .why-feature { display: flex; gap: 18px; align-items: flex-start; }
+  .why-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: rgba(126,200,80,0.15); border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .why-feature h4 { font-size: 17px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+  .why-feature p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--forest); }
+  #testimonials .section-title { color: white; }
+  #testimonials .section-sub { color: rgba(255,255,255,0.6); }
+  #testimonials .section-tag { color: var(--amber-light); }
+
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 32px;
+  }
+  .stars { color: var(--amber-light); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+  .testimonial-card blockquote {
+    font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.85);
+    line-height: 1.7; margin-bottom: 24px; font-style: italic;
+  }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--amber-light); display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--forest);
+    flex-shrink: 0;
+  }
+  .author-name { font-size: 14px; font-weight: 500; color: white; }
+  .author-detail { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--cream); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-info h2 { color: var(--forest); margin-bottom: 16px; }
+  .contact-info p { font-size: 16px; font-weight: 300; color: var(--gray); line-height: 1.7; margin-bottom: 36px; }
+
+  .contact-detail { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
+  .contact-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--forest); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .contact-detail h5 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--forest-light); margin-bottom: 4px; }
+  .contact-detail p { font-size: 15px; color: var(--charcoal); }
+
+  /* FORM */
+  .contact-form {
+    background: white; border-radius: 24px;
+    padding: 40px; border: 1px solid rgba(45,80,22,0.08);
+    box-shadow: 0 8px 30px rgba(45,80,22,0.06);
+  }
+  .contact-form h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; font-weight: 600; color: var(--forest);
+    margin-bottom: 8px;
+  }
+  .contact-form .form-sub { font-size: 14px; color: var(--gray); margin-bottom: 28px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block; font-size: 13px; font-weight: 500;
+    color: var(--forest); margin-bottom: 8px; letter-spacing: 0.03em;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--light-gray); border-radius: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    color: var(--charcoal); background: var(--cream);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--forest-light);
+    box-shadow: 0 0 0 3px rgba(92,158,53,0.15);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  /* SEND METHOD TOGGLE */
+  .send-method { margin-bottom: 22px; }
+  .send-method label { display: block; font-size: 13px; font-weight: 500; color: var(--forest); margin-bottom: 10px; }
+  .method-toggle {
+    display: flex; gap: 10px;
+  }
+  .method-btn {
+    flex: 1; padding: 10px; border-radius: 10px;
+    border: 1.5px solid var(--light-gray);
+    background: var(--cream); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--gray); transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .method-btn.active {
+    background: var(--forest); color: white; border-color: var(--forest);
+  }
+  .method-btn:not(.active):hover { border-color: var(--forest-light); color: var(--forest); }
+
+  .method-panel { display: none; }
+  .method-panel.visible { display: block; }
+  .method-panel .wa-note {
+    background: #e8f8e8; border: 1px solid rgba(37,211,102,0.3);
+    border-radius: 10px; padding: 14px 16px;
+    font-size: 13px; color: #1a7a2a; display: flex; align-items: center; gap: 10px;
+  }
+  .method-panel .wa-note svg { flex-shrink: 0; }
+  .wa-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 14px;
+    background: #25d366; color: white; border: none;
+    border-radius: 12px; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; margin-top: 14px;
+    text-decoration: none;
+  }
+  .wa-btn:hover { background: #1eba56; transform: translateY(-1px); }
+
+  .submit-btn {
+    width: 100%; padding: 15px;
+    background: var(--forest); color: white; border: none;
+    border-radius: 50px; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; margin-top: 6px;
+  }
+  .submit-btn:hover { background: var(--forest-mid); transform: translateY(-1px); }
+
+  #form-success {
+    display: none; text-align: center; padding: 20px 0;
+    animation: fadeIn 0.4s ease;
+  }
+  #form-success .check { font-size: 48px; margin-bottom: 12px; }
+  #form-success h4 { font-size: 20px; color: var(--forest); margin-bottom: 8px; }
+  #form-success p { font-size: 14px; color: var(--gray); }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal); color: rgba(255,255,255,0.6);
+    padding: 50px 60px 30px;
+    display: flex; flex-direction: column; gap: 36px;
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 30px; }
+  .footer-brand {
+    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+    color: white; margin-bottom: 10px;
+  }
+  .footer-brand span { color: var(--amber-light); }
+  .footer-tagline { font-size: 13px; max-width: 240px; }
+  .footer-links h5 { font-size: 13px; font-weight: 600; color: white; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; font-size: 13px; text-align: center; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 60px 24px; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-image { display: none; }
+    .hero h1 { font-size: 42px; }
+    .why-layout { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .gallery-item:first-child { grid-column: auto; grid-row: auto; }
+    .stats { padding: 32px 24px; gap: 40px; }
+    footer { padding: 40px 24px 24px; }
+    .footer-top { flex-direction: column; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Educatorias 📚</div>
+  <ul class="nav-links">
+    <li><a href="#programs">Programas</a></li>
+    <li><a href="#gallery">Galería</a></li>
+    <li><a href="#why">¿Por qué elegirnos?</a></li>
+    <li><a href="#testimonials">Lo que dicen los padres</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Enroll Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Matricula campamento 2026</div>
+    <h1>Where <em>curious</em> kids become confident learners</h1>
+    <p>Personalized tutorials across STEM, language arts, and creative subjects — designed to help every child thrive at their own pace.</p>
+    <div class="hero-btns">
+      <a href="#programs" class="btn-primary">Explore Programs</a>
+      <a href="#contact" class="btn-outline">Schedule a Visit</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-image-placeholder">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="20" height="20" rx="4" fill="#2D5016" opacity="0.5"/><rect x="36" y="8" width="20" height="20" rx="4" fill="#3E6B22" opacity="0.5"/><rect x="8" y="36" width="20" height="20" rx="4" fill="#5C9E35" opacity="0.5"/><rect x="36" y="36" width="20" height="20" rx="4" fill="#7EC850" opacity="0.5"/></svg>
+      <p>Add your hero photo here</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><span class="stat-number">100+</span><span class="stat-label">Estudiantes Tutorados</span></div>
+  <div class="stat"><span class="stat-number">13+</span><span class="stat-label">Tutores Expertos</span></div>
+  <div class="stat"><span class="stat-number">98%</span><span class="stat-label">Satisfacción de Padres</span></div>
+  <div class="stat"><span class="stat-number">8</span><span class="stat-label">Áreas Temáticas</span></div>
+</div>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="programs-header">
+    <p class="section-tag">Nuestros Programas</p>
+    <h2 class="section-title">Programas</h2>
+    <p class="section-sub"></p>
+  </div>
+
+  <div class="programs-grid">
+
+    <!-- Card 1 -->
+    <div class="program-card">
+      <div class="program-img-placeholder" style="background: linear-gradient(135deg, #e8f4d4, #a8d060);">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="16" fill="#2D5016" opacity="0.25"/><text x="20" y="26" text-anchor="middle" font-size="18" fill="#2D5016">🔢</text></svg>
+        <p style="color: #84a59d;">Add program image</p>
+      </div>
+      <div class="program-body">
+        <span class="program-age" style="background:rgba(126,200,80,0.15);color:#84a59d;">Grados: kinder a 12mo</span>
+        <h3>Estudios Supervisados</h3>
+        <p>Nuestro Objetivo es reforzar las destrezas academicas, aclarar dudas y desarollar habitos de estudio solidos que inpactren positivamente el rendimiento academico de  nuestros estudiantes.</p>
+        <ul class="program-features">
+          <li>Tutorias especializadas individuales 1 a 1 y grupales</li>
+          <li>Lectoescritura: desarollo de habilidadoes de lectura y escritura</li>
+          <li>Matematicas: compension y aplicacion de conceptos matematicos</li>
+          <li>Ingles: mejora de fluidez y comprension del idioma</li>
+        </ul>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="section-tag">Equipo de Educatorias</p>
+  <h2 class="section-title">Conoce nuestro equipo</h2>
+  <p class="section-sub"></p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item" style="grid-column:1/2; grid-row:1/3;">
+      <div class="gallery-placeholder" style="height:100%;background:linear-gradient(160deg,#3E6B22,#7EC850);">
+        <svg viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="10" height="10" rx="2" fill="white" opacity="0.5"/><rect x="18" y="4" width="10" height="10" rx="2" fill="white" opacity="0.5"/><rect x="4" y="18" width="10" height="10" rx="2" fill="white" opacity="0.5"/><rect x="18" y="18" width="10" height="10" rx="2" fill="white" opacity="0.5"/></svg>
+        <span>Main classroom</span>
+        <span style="font-size:11px;opacity:0.7">Upload your photo</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder" style="height:240px;background:linear-gradient(135deg,#C85A2A,#E8A020);">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" fill="white" opacity="0.3"/></svg>
+        <span>Reading corner</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder" style="height:240px;background:linear-gradient(135deg,#185FA5,#5DCAA5);">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M8 24L16 8L24 24" stroke="white" stroke-width="2" opacity="0.5"/></svg>
+        <span>STEM lab</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder" style="height:240px;background:linear-gradient(135deg,#993556,#F5C460);">
+        <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="8" fill="white" opacity="0.3"/><circle cx="16" cy="16" r="4" fill="white" opacity="0.3"/></svg>
+        <span>Art studio</span>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder" style="height:240px;background:linear-gradient(135deg,#0F6E56,#9FE1CB);">
+        <svg viewBox="0 0 32 32" fill="none"><rect x="6" y="6" width="20" height="20" rx="4" fill="white" opacity="0.3"/></svg>
+        <span>Group sessions</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-layout">
+    <div class="why-image-block">
+      <div class="why-img-placeholder">
+        <svg viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="22" fill="#2D5016" opacity="0.2"/><text x="28" y="35" text-anchor="middle" font-size="28">👨‍🏫</text></svg>
+        <p style="font-size:15px;font-weight:500;margin-top:8px">Add tutor/team photo</p>
+      </div>
+      <div class="why-badge-float">
+        <div class="big">5+</div>
+        <div class="small">Años de experiencia</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-tag">Reviews</p>
+  <h2 class="section-title">Lo que Mencionan los padres</h2>
+  <p class="section-sub" style="margin-bottom:50px;">Experiencia real de padres que han visto la diferencia que hace la tutoría personalizada.</p>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Un excelente lugar llevo casi 3 años llevando a mi hijo y a superado muchas cosas y cn unas notas super gracia pr se como son q todo cn amor y a jahel le encanta ir a cojer sus tutorías dios las bendiga a todas 🥰🙌🙏"</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">I</div>
+        <div>
+          <div class="author-name">Ian Jahel.</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Como profesora de grados primarios, he podido observar un progreso significativo en mis estudiantes gracias a Educatoría. La ayuda individualizada y las tutorías de lectoescritura que se han brindado a algunos de ellos han marcado una gran diferencia en su desarrollo académico. Los estudiantes han ganado mayor confianza, han mejorado sus habilidades de lectura y escritura, y muestran más motivación en el aula. Sin duda, Educatoría ha sido un apoyo valioso en su proceso de aprendizaje."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div>
+          <div class="author-name">Myrta Y. Beauchamp.</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Excelentes servicios. Muy profesionales, empaticos, con mi hijo siempre fueron muy amables y académicamente le dieron las destrezas necesarias.  Los recomiendo al 101%."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">C</div>
+        <div>
+          <div class="author-name">Christian Bonet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div class="contact-info">
+      <p class="section-tag">Contactanos</p>
+      <h2 class="section-title">Como contactarnos?</h2>
+      <p>Llena el formulario y nos pondremos en contacto contigo en las próximas 24 horas para programar una consulta.</p>
+
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h5>Localidades</h5>
+          <p>Barceloneta, Vega Baja</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h5>Phone</h5>
+          <p><a href="tel:1+7874556128">BA: (787) 455-6128</a> / <a href="tel:1+7876694069">VB: (787) 669-4069</a></p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <h5>Hours</h5>
+          <p>Lunes - Jueves: 3:00pm–6:00pm </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form">
+      <h3>Tell us about your child</h3>
+      <p class="form-sub">We'll match them with the perfect program and tutor.</p>
+
+      <div id="form-fields">
+
+        <!-- LOCATION SELECTOR -->
+        <div class="form-group" style="margin-bottom:24px;">
+          <label style="font-size:14px;font-weight:600;color:var(--forest);margin-bottom:10px;display:block;">📍 Select your nearest location</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="loc-card" id="loc-barceloneta" onclick="selectLocation('barceloneta')" style="border:2px solid var(--light-gray);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all 0.2s;background:var(--cream);">
+              <div style="font-weight:600;font-size:14px;color:var(--charcoal);margin-bottom:4px;">Barceloneta</div>
+              <div style="font-size:12px;color:var(--gray);">educatoriaspr@gmail.com</div>
+            </div>
+            <div class="loc-card" id="loc-vegabaja" onclick="selectLocation('vegabaja')" style="border:2px solid var(--light-gray);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all 0.2s;background:var(--cream);">
+              <div style="font-weight:600;font-size:14px;color:var(--charcoal);margin-bottom:4px;">Vega Baja</div>
+              <div style="font-size:12px;color:var(--gray);">educatoriasvb@gmail.com</div>
+            </div>
+          </div>
+          <div id="loc-warning" style="display:none;font-size:12px;color:#c85a2a;margin-top:8px;">⚠️ Please select a location before sending.</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Padre / Tutor Legal</label>
+            <input type="text" id="parent-name" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Nombre del Niño</label>
+            <input type="text" id="child-name" placeholder="Nombre del niño">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Dirección de Correo Electrónico</label>
+            <input type="email" id="email" placeholder="you@email.com">
+          </div>
+          <div class="form-group">
+            <label>Número de Teléfono / WhatsApp</label>
+            <input type="tel" id="phone" placeholder="+1 (787) 555-0000">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Grado del estudiante</label>
+            <select id="grade">
+              <option value="">Seleccionar Grado</option>
+              <option>Kindergarten</option>
+              <option>1st Grade</option><option>2nd Grade</option>
+              <option>3rd Grade</option><option>4th Grade</option>
+              <option>5th Grade</option><option>6th Grade</option>
+              <option>7th Grade</option><option>8th Grade</option>
+              <option>9th Grade</option><option>10th Grade</option>
+              <option>11th Grade</option><option>12th Grade</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Program of Interest</label>
+            <select id="program">
+              <option value="">Seleccionar Programa</option>
+              <option>Matemáticas</option>
+              <option>Lectoescritura</option>
+              <option>Inglés</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Cuentanos más (objetivos, desafíos, preguntas)</label>
+          <textarea id="message" placeholder="e.j. Mi hijo tiene dificultades con la comprensión lectora y nos gustaría ayudarlo a ponerse al día antes del próximo año escolar..."></textarea>
+        </div>
+
+        <!-- SEND METHOD -->
+        <div class="send-method">
+          <label>Como podemons contactarnos con usted?</label>
+          <div class="method-toggle">
+            <button class="method-btn active" onclick="setMethod('email')" id="btn-email">✉️ Email</button>
+            <button class="method-btn" onclick="setMethod('whatsapp')" id="btn-wa">💬 WhatsApp</button>
+          </div>
+        </div>
+
+        <div id="panel-email" class="method-panel visible">
+          <button class="submit-btn" onclick="submitForm()">Envia Mensaje via Email →</button>
+        </div>
+
+        <div id="panel-whatsapp" class="method-panel">
+          <div class="wa-note">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Tu informacion fue enviada a nuestro equipo de Whatsapp.
+          </div>
+          <a id="wa-send-btn" href="#" class="wa-btn" onclick="sendWhatsApp()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Enviar via Whatsapp
+          </a>
+        </div>
+      </div>
+
+      <div id="form-success">
+        <div class="check">✅</div>
+        <h4>Mensaje enviado!</h4>
+        <p>¡Gracias! Nuestro equipo se pondrá en contacto dentro de 24 horas para discutir el programa perfecto para tu hijo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Educatorias</div>
+      <p class="footer-tagline">Estudios personalizados para niños y adolescentes.</p>
+    </div>
+    <div class="footer-links">
+      <h5>Programs</h5>
+      <ul>
+        <li><a href="#programs">Math Foundations</a></li>
+        <li><a href="#programs">Reading & Writing</a></li>
+        <li><a href="#programs">Science & STEM</a></li>
+        <li><a href="#programs">College Prep</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact">Schedule a Visit</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Follow Us</h5>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Educatorias. All rights reserved. · Construido con ❤️ Para Familias.
+  </div>
+</footer>
+
+<script>
+  // ─── LOCATION DATA ───
+  const locations = {
+    barceloneta: {
+      name: 'Barceloneta',
+      email: 'educatoriaspr@gmail.com',
+      waNumber: '17876694069' // ← REPLACE with Barceloneta WhatsApp number
+    },
+    vegabaja: {
+      name: 'Vega Baja',
+      email: 'educatoriasvb@gmail.com',
+      waNumber: '17874556128' // ← REPLACE with Vega Baja WhatsApp number
+    }
+  };
+
+  let selectedLocation = null;
+  let currentMethod = 'email';
+
+  // ─── LOCATION SELECTOR ───
+  function selectLocation(key) {
+    selectedLocation = key;
+    document.getElementById('loc-warning').style.display = 'none';
+    Object.keys(locations).forEach(k => {
+      const card = document.getElementById('loc-' + k);
+      if (k === key) {
+        card.style.borderColor = 'var(--forest)';
+        card.style.background = 'rgba(45,80,22,0.06)';
+      } else {
+        card.style.borderColor = 'var(--light-gray)';
+        card.style.background = 'var(--cream)';
+      }
+    });
+  }
+
+  // ─── SEND METHOD TOGGLE ───
+  function setMethod(method) {
+    currentMethod = method;
+    document.getElementById('btn-email').className = 'method-btn' + (method === 'email' ? ' active' : '');
+    document.getElementById('btn-wa').className = 'method-btn' + (method === 'whatsapp' ? ' active' : '');
+    document.getElementById('panel-email').className = 'method-panel' + (method === 'email' ? ' visible' : '');
+    document.getElementById('panel-whatsapp').className = 'method-panel' + (method === 'whatsapp' ? ' visible' : '');
+  }
+
+  // ─── SHARED FORM DATA ───
+  function getFormData() {
+    return {
+      parent: document.getElementById('parent-name').value.trim(),
+      child:  document.getElementById('child-name').value.trim(),
+      email:  document.getElementById('email').value.trim(),
+      phone:  document.getElementById('phone').value.trim(),
+      grade:  document.getElementById('grade').value,
+      program: document.getElementById('program').value,
+      message: document.getElementById('message').value.trim()
+    };
+  }
+
+  function showSuccess(locationName) {
+    document.getElementById('form-fields').style.display = 'none';
+    const s = document.getElementById('form-success');
+    s.querySelector('p').textContent = 'Thank you! The ' + locationName + ' team will be in touch within 24 hours to discuss the perfect program for your child.';
+    s.style.display = 'block';
+  }
+
+  // ─── EMAIL SUBMIT ───
+  function submitForm() {
+    if (!selectedLocation) {
+      document.getElementById('loc-warning').style.display = 'block';
+      document.getElementById('loc-barceloneta').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    const d = getFormData();
+    if (!d.parent || !d.email) {
+      alert('Please fill in at least your name and email address.');
+      return;
+    }
+    const loc = locations[selectedLocation];
+    const subject = encodeURIComponent('[' + loc.name + '] New Inquiry: ' + (d.child || d.parent) + ' – ' + (d.program || 'General'));
+    const body = encodeURIComponent(
+      'Solicitud Educatorias Website\n' +
+      'Location: ' + loc.name + '\n\n' +
+      'Padre/Guardian: ' + d.parent + '\n' +
+      'Nombre del Estudiante: ' + (d.child || 'Not provided') + '\n' +
+      'Email: ' + d.email + '\n' +
+      'Phone: ' + (d.phone || 'Not provided') + '\n' +
+      'Grado/Nivel: ' + (d.grade || 'Not specified') + '\n' +
+      'Programa Interest: ' + (d.program || 'Not specified') + '\n\n' +
+      'Mensaje:\n' + (d.message || 'No additional message.')
+    );
+    window.location.href = 'mailto:' + loc.email + '?subject=' + subject + '&body=' + body;
+    showSuccess(loc.name);
+  }
+
+  // ─── WHATSAPP SUBMIT ───
+  function sendWhatsApp(event) {
+    if (event) event.preventDefault();
+    if (!selectedLocation) {
+      document.getElementById('loc-warning').style.display = 'block';
+      document.getElementById('loc-barceloneta').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    const d = getFormData();
+    if (!d.parent) {
+      alert('Por foavor diganos su nombre para enviar el mensaje por WhatsApp.');
+      return;
+    }
+    const loc = locations[selectedLocation];
+    const text = encodeURIComponent(
+      '👋 Hello BrightMinds ' + loc.name + '! I\'m inquiring from your website.\n\n' +
+      '👤 Parent: ' + d.parent + '\n' +
+      '🧒 Child: ' + (d.child || 'N/A') + '\n' +
+      '📧 Email: ' + (d.email || 'N/A') + '\n' +
+      '📞 Phone: ' + (d.phone || 'N/A') + '\n' +
+      '🎓 Grade: ' + (d.grade || 'N/A') + '\n' +
+      '📚 Program Interest: ' + (d.program || 'N/A') + '\n\n' +
+      (d.message ? '💬 ' + d.message : '')
+    );
+    window.open('https://wa.me/' + loc.waNumber + '?text=' + text, '_blank');
+    showSuccess(loc.name);
+  }
+
+  // ─── SMOOTH NAV ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
