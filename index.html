@@ -699,6 +699,7 @@
             <label>Grado del estudiante</label>
             <select id="grade">
               <option value="">Seleccionar Grado</option>
+              <option>Homeschool</option>
               <option>Kindergarten</option>
               <option>1st Grade</option><option>2nd Grade</option>
               <option>3rd Grade</option><option>4th Grade</option>
@@ -715,6 +716,7 @@
               <option>Matemáticas</option>
               <option>Lectoescritura</option>
               <option>Inglés</option>
+              <option>Estudios Supervisados</option>
             </select>
           </div>
         </div>
@@ -802,12 +804,12 @@
     barceloneta: {
       name: 'Barceloneta',
       email: 'educatoriaspr@gmail.com',
-      waNumber: '17876694069' // ← REPLACE with Barceloneta WhatsApp number
+      waNumber: '17874556128' // ← REPLACE with Barceloneta WhatsApp number
     },
     vegabaja: {
       name: 'Vega Baja',
       email: 'educatoriasvb@gmail.com',
-      waNumber: '17874556128' // ← REPLACE with Vega Baja WhatsApp number
+      waNumber: '17876694069' // ← REPLACE with Vega Baja WhatsApp number
     }
   };
 
@@ -903,13 +905,13 @@
     }
     const loc = locations[selectedLocation];
     const text = encodeURIComponent(
-      '👋 Hello BrightMinds ' + loc.name + '! I\'m inquiring from your website.\n\n' +
-      '👤 Parent: ' + d.parent + '\n' +
-      '🧒 Child: ' + (d.child || 'N/A') + '\n' +
+      '👋 Hola Educatorias ' + loc.name + '! Solicitud Online.\n\n' +
+      '👤 Padre/Guardian: ' + d.parent + '\n' +
+      '🧒 Nombre del Estudiante: ' + (d.child || 'N/A') + '\n' +
       '📧 Email: ' + (d.email || 'N/A') + '\n' +
       '📞 Phone: ' + (d.phone || 'N/A') + '\n' +
-      '🎓 Grade: ' + (d.grade || 'N/A') + '\n' +
-      '📚 Program Interest: ' + (d.program || 'N/A') + '\n\n' +
+      '🎓 Grado/Nivel: ' + (d.grade || 'N/A') + '\n' +
+      '📚 Programa Interest: ' + (d.program || 'N/A') + '\n\n' +
       (d.message ? '💬 ' + d.message : '')
     );
     window.open('https://wa.me/' + loc.waNumber + '?text=' + text, '_blank');
