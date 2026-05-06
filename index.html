@@ -12,13 +12,18 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">Educatorias 📚</div>
-  <ul class="nav-links">
-    <li><a href="#programs">Programas</a></li>
-    <li><a href="#gallery">Galería</a></li>
-    <li><a href="#testimonials">¿Que dicen los padres?</a></li>
-    <li><a href="#contact">Contacto</a></li>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#programs" class="nav-mobile-link">Programas</a></li>
+    <li><a href="#gallery" class="nav-mobile-link">Galería</a></li>
+    <li><a href="#testimonials" class="nav-mobile-link">¿Que dicen los padres?</a></li>
+    <li><a href="#contact" class="nav-mobile-link">Contacto</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Matriculate Ya!</a>
+  <div class="nav-right">
+    <a href="#contact" class="nav-cta">Matriculate Ya!</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -226,14 +231,14 @@
         <!-- LOCATION SELECTOR -->
         <div class="form-group" style="margin-bottom:24px;">
           <label style="font-size:14px;font-weight:600;color:var(--forest);margin-bottom:10px;display:block;">📍 Selecciona tu ubicación más cercana</label>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="loc-grid">
             <div class="loc-card" id="loc-barceloneta" onclick="selectLocation('barceloneta')" style="border:2px solid var(--light-gray);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all 0.2s;background:var(--cream);">
               <div style="font-weight:600;font-size:14px;color:var(--charcoal);margin-bottom:4px;">Barceloneta</div>
-              <div style="font-size:12px;color:var(--gray);">educatoriaspr@gmail.com</div>
+              <div class="loc-card-email">educatoriaspr@gmail.com</div>
             </div>
             <div class="loc-card" id="loc-vegabaja" onclick="selectLocation('vegabaja')" style="border:2px solid var(--light-gray);border-radius:14px;padding:14px 16px;cursor:pointer;transition:all 0.2s;background:var(--cream);">
               <div style="font-weight:600;font-size:14px;color:var(--charcoal);margin-bottom:4px;">Vega Baja</div>
-              <div style="font-size:12px;color:var(--gray);">educatoriasvb@gmail.com</div>
+              <div class="loc-card-email">educatoriasvb@gmail.com</div>
             </div>
           </div>
           <div id="loc-warning" style="display:none;font-size:12px;color:#c85a2a;margin-top:8px;">⚠️ Please select a location before sending.</div>
