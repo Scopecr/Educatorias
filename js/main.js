@@ -113,9 +113,17 @@ function sendWhatsApp(event) {
     '📚 Programa Interest: ' + (d.program || 'N/A') + '\n\n' +
     (d.message ? '💬 ' + d.message : '')
   );
-  window.open('https://wa.me/' + loc.waNumber + '?text=' + text, '_blank');
+  window.open('https://wa.me/' + loc.waNumber + '?text=' + text, '_blank', 'noopener,noreferrer');
   showSuccess(loc.name);
 }
+
+// ─── BUTTON WIRING ───
+document.getElementById('loc-barceloneta').addEventListener('click', () => selectLocation('barceloneta'));
+document.getElementById('loc-vegabaja').addEventListener('click', () => selectLocation('vegabaja'));
+document.getElementById('btn-email').addEventListener('click', () => setMethod('email'));
+document.getElementById('btn-wa').addEventListener('click', () => setMethod('whatsapp'));
+document.getElementById('email-send-btn').addEventListener('click', submitForm);
+document.getElementById('wa-send-btn').addEventListener('click', sendWhatsApp);
 
 // ─── SMOOTH NAV ───
 document.querySelectorAll('a[href^="#"]').forEach(a => {
