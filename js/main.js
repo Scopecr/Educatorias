@@ -56,7 +56,7 @@ function getFormData() {
 function showSuccess(locationName) {
   document.getElementById('form-fields').style.display = 'none';
   const s = document.getElementById('form-success');
-  s.querySelector('p').textContent = 'Thank you! The ' + locationName + ' team will be in touch within 24 hours to discuss the perfect program for your child.';
+  s.querySelector('p').textContent = 'Gracias! El equipo de ' + locationName + ' se comunicará con usted en las próximas 24 horas.';
   s.style.display = 'block';
 }
 
@@ -69,7 +69,7 @@ function submitForm() {
   }
   const d = getFormData();
   if (!d.parent || !d.email) {
-    alert('Please fill in at least your name and email address.');
+    alert('Por favor complete su nombre y correo electrónico.');
     return;
   }
   const loc = locations[selectedLocation];
@@ -99,7 +99,7 @@ function sendWhatsApp(event) {
   }
   const d = getFormData();
   if (!d.parent) {
-    alert('Por foavor diganos su nombre para enviar el mensaje por WhatsApp.');
+    alert('Por favor diganos su nombre para enviar el mensaje por WhatsApp.');
     return;
   }
   const loc = locations[selectedLocation];
