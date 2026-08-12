@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Actividades · Educatorias 📚</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="../index.html" class="nav-logo" style="text-decoration:none;">Educatorías 📚</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="../index.html#programs" class="nav-mobile-link">Programas</a></li>
+    <li><a href="../index.html#gallery" class="nav-mobile-link">Galería</a></li>
+    <li><a href="index.html" class="nav-mobile-link active">Actividades</a></li>
+    <li><a href="../index.html#testimonials" class="nav-mobile-link">¿Qué dicen los padres?</a></li>
+    <li><a href="../index.html#contact" class="nav-mobile-link">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="../index.html#contact" class="nav-cta">Matriculate Ya!</a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <p class="section-tag">Momentos que vivimos juntos</p>
+  <h1 class="section-title">Actividades</h1>
+  <p class="section-sub">Un vistazo a las actividades y experiencias de nuestros estudiantes en Educatorías.</p>
+</section>
+
+<!-- ALBUMS -->
+<section class="albums-section">
+  <div id="albums-container" class="albums-wrap"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <button id="lightbox-close" class="lightbox-close" aria-label="Cerrar">✕</button>
+  <button id="lightbox-prev" class="lightbox-prev" aria-label="Anterior">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-next" class="lightbox-next" aria-label="Siguiente">›</button>
+  <div id="lightbox-caption" class="lightbox-caption"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Educatorías</div>
+      <p class="footer-tagline">Estudios personalizados para niños y adolescentes.</p>
+    </div>
+    <div class="footer-links">
+      <h5>Programas</h5>
+      <ul>
+        <li><a href="../index.html#programs">Fundamentos Maremáticos</a></li>
+        <li><a href="../index.html#programs">Lectura y Escritura</a></li>
+        <li><a href="../index.html#programs">Inglés</a></li>
+        <li><a href="../index.html#programs">Estudios Supervisados</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="../index.html#why">About Us</a></li>
+        <li><a href="../index.html#testimonials">Reviews</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a href="../index.html#contact">Schedule a Visit</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Follow Us</h5>
+      <ul>
+        <li><a href="https://www.instagram.com/educatorias/">Instagram</a></li>
+        <li><a href="https://www.facebook.com/Educatorias/">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Educatorías. All rights reserved. · Construido con ❤️ Para Familias.
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/gallery-data.js"></script>
+<script src="js/gallery.js"></script>
+</body>
+</html>
