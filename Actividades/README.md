@@ -13,7 +13,7 @@ agregar fotos nuevas — solo sigue estos pasos:
    lista `ALBUMS`:
 
    ```js
-   const ALBUMS = [
+   window.ALBUMS = [
      {
        id: 'dia-de-lectura',        // debe ser igual al nombre de la carpeta
        title: 'Día de Lectura',     // título que se muestra en la página
