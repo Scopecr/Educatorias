@@ -25,11 +25,22 @@ window.ALBUMS = [
     id: 'Barceloneta',
     title: 'Barceloneta',
     images: [
-      'WhatsApp Image 2026-08-14 at 9.59.08 AM(1).jpeg',
+      'barcelonetaentrada.jpeg',
       'WhatsApp Image 2026-08-14 at 9.59.09 AM.jpeg',
-      'WhatsApp Image 2026-08-14 at 9.59.09 AM(1).jpeg',
+      'salon_educatoria.jpeg',
       'WhatsApp Image 2026-08-14 at 9.59.08 AM.jpeg',
       'edicatoruas mesas.jpeg'
+    ]
+  },
+
+  {
+    id: 'Vega_Baja',
+    title: 'Vega Baja',
+    images: [
+      'vegabaja_2.jpeg',
+      'vegabaja_1.jpeg',
+      'vegabaja_3.jpeg',
+      'vegabaja_4.jpeg'
     ]
   }
 ];
